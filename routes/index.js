@@ -18,7 +18,7 @@ router.get('/tv', function(req, res, next) {
 router.get('/movie/random', function(req, res, next) {
   var q = req.query
       q.genre = q.genre || []
-  var db = require("../lib/axios")
+  var db = require("../lib/tmdb")
   var show;
   var query = { 
     "vote_count.gte": 100,
@@ -50,6 +50,10 @@ router.get('/movie/random', function(req, res, next) {
     if(q.json) return res.json({ req: q, query, data: show})
     else return res.render('movie', show)
   })
+  .catch(err => {
+    console.error(err.response.data)
+    return res.render('specific')
+  })
   
 })
 
@@ -58,7 +62,7 @@ router.get('/movie/random', function(req, res, next) {
 router.get('/tv/random', function(req, res, next) {
   var q = req.query
       q.genre = q.genre || []
-  var db = require("../lib/axios")
+  var db = require("../lib/tmdb")
   var query = { 
     "vote_count.gte": 100,
     "vote_average.lte": q["vote-max"], 
@@ -87,6 +91,10 @@ router.get('/tv/random', function(req, res, next) {
     show.videos = data.results
     if(q.json) return res.json({ req: q, query, data: show})
     else return res.render('tv', show)
+  })
+  .catch(err => {
+    console.error(err.response.data)
+    return res.render('specific')
   })
   
 });
