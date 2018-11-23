@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/bulma-checkradio/dist/css/bulma-checkradio.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+    .ui-slider-handle {
+      height: 130%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .ui-slider-ranger {
+      background: white;
+    }
+    .ui-slider {
+      height: 26px;
+      background: rgba(255,255,255,0.4);
+    }
+    #genres {
+      width: 100%;
+      text-align: left;
+      margin: 2rem auto 1rem;;
+      max-width: 250px;
+    }
+    .tabs li {
+      display: block;
+      background: rgba(0,0,0,0.1);
+    }
+    iframe {
+      display: inline-block;
+      max-width: 250px;
+      height: auto;
+      margin: 0 4px;
+    }
+    </style>
+  </head>
+  <body>
+    
+      <%- content %>
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+
+  <script>
+  var year = new Date().getFullYear()
+  $('#input-vote-min').val(7)
+  $('#input-vote-max').val(10)
+  $('#input-year-min').val(year-20)
+  $('#input-year-max').val(year)
+
+  $('#genre-toggle').click(function () {
+    $('#genres').show()
+    $('#genre-toggle').hide();
+  })
+  $('#vote-range').slider({
+      range: true,
+      min:0,
+      max: 10,
+      values: [7, 10],
+      slide(e, ui) {
+        $('#input-vote-min').val(ui.values[0])
+        $('#vote-min').html(ui.values[0])
+        $('#input-vote-max').val(ui.values[1])
+        $('#vote-max').html(ui.values[1])
+      }
+    });
+
+    $('#year-range').slider({
+      range: true,
+      min:1874,
+      max: year,
+      values: [year - 20, year],
+      slide(e, ui) {
+        $('#input-year-min').val(ui.values[0])
+        $('#year-min').html(ui.values[0])
+        $('#input-year-max').val(ui.values[1])
+        $('#year-max').html(ui.values[1])
+      }
+    });
+  </script>
+
+  </body>
+</html>

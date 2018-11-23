@@ -1,0 +1,64 @@
+<% extend('layout') %>
+
+    <form action="/movie/random" method="get">
+      <input type="hidden" name="vote-min" id="input-vote-min">
+      <input type="hidden" name="vote-max" id="input-vote-max">
+      <input type="hidden" name="year-min" id="input-year-min">
+      <input type="hidden" name="year-max" id="input-year-max">
+
+      <section class="hero is-success is-fullheight">
+        <!-- <div class="hero-body"> -->
+          <div class="container has-text-centered ">
+            <div class="is-size-1 has-text-weight-bold">Chilly Flix</div>
+            
+            <div class="tabs is-centered is-size-5">
+              <ul>
+                <li class="is-active has-background-dark"><a>Movie</a></li>
+                <li><a href="/tv">TV</a></li>
+              </ul>
+            </div>
+
+            <div style="max-width: 250px; width: 100%;display: flex;margin: 3rem auto 0;justify-content: space-between;">
+              <div class="is-size-5">Movie Rating</div>
+              <div class="is-size-5">
+                <span id="vote-min">7</span>
+                <span>-</span>
+                <span id="vote-max">10</span>
+              </div>
+            </div>
+            <div id="vote-range" style="max-width: 250px; width: 100%; margin: 1rem auto"></div>
+
+
+
+            <div style="max-width: 250px; width: 100%;display: flex;margin: 3rem auto 0;justify-content: space-between;">
+                <div class="is-size-5">Movie Year</div>
+                <div class="is-size-5">
+                  <span id="year-min"><%= new Date().getFullYear() - 20 %></span>
+                  <span>-</span>
+                  <span id="year-max"><%= new Date().getFullYear() %></span>
+                </div>
+              </div>
+              <div id="year-range" style="max-width: 250px; width: 100%; margin: 1rem auto"></div>
+
+              <button type="button" class="button is-white" id="genre-toggle" style="margin-top: 2rem;">Pick Genres</button>
+              <br>
+              <div style="display:none;" id="genres">
+                  <% Object.keys(genres).forEach(key => { %>
+                    <div class="field">
+                      <input class="is-checkradio" type="checkbox" name="genre[]" value="<%= key %>" id="g<%= key %>">
+                      <label for="g<%= key %>"><%= genres[key] %></label>
+                    </div>
+                  <% }) %>
+              </div>
+              
+             
+              <button type="submit" class="button is-white" style="margin-top: 2rem;">Go!</button>
+              <br><br>
+          </div>
+        <!-- </div> -->
+      </section>
+
+     
+    </form>
+    
+    

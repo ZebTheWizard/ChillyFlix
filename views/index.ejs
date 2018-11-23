@@ -1,0 +1,29 @@
+<% extend('layout') %>
+
+    <form action="/movie/random" method="get">
+      <input type="hidden" name="vote-min" id="input-vote-min">
+      <input type="hidden" name="vote-max" id="input-vote-max">
+      <input type="hidden" name="year-min" id="input-year-min">
+      <input type="hidden" name="year-max" id="input-year-max">
+
+      <section class="hero is-link is-fullheight">
+        <div class="hero-body">
+          <div class="container has-text-centered ">
+            <div class="is-size-1 has-text-weight-bold">Chilly Flix</div>
+            <p class="is-size-5">
+              Pick a random movie or TV show and chill
+            </p>
+            <br>
+
+            
+            <a href="/movie" class="button is-white" style="margin-top: 2rem;">Pick a movie!</a>
+            <a href="/tv" class="button is-white" style="margin-top: 2rem;">Pick a TV show!</a>
+              
+          </div>
+        </div>
+      </section>
+
+     
+    </form>
+    
+    

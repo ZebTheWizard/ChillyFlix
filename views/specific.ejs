@@ -1,0 +1,32 @@
+<% extend('layout') %>
+
+    <form action="/movie" method="post">
+      <input type="hidden" name="vote-min" id="input-vote-min">
+      <input type="hidden" name="vote-max" id="input-vote-max">
+      <input type="hidden" name="year-min" id="input-year-min">
+      <input type="hidden" name="year-max" id="input-year-max">
+
+      <section class="hero is-danger is-fullheight">
+        <div class="hero-body" >
+          <div class="container has-text-centered ">
+            
+            <div class="title">Sorry, we could not find a movie that matches what you like.</div>
+            
+            <hr>
+
+            <div style="margin-top: 1rem;">
+                <a href="/" class="button">Home</a>
+                <button type="button" class="button" onclick="location.reload()">Try again</button>
+            </div>
+            
+            
+            
+            
+          </div>
+        </div>
+      </section>
+
+     
+    </form>
+    
+    

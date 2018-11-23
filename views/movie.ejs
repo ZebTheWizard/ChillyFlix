@@ -1,0 +1,65 @@
+<% extend('layout') %>
+
+    <form action="/movie" method="post">
+      <input type="hidden" name="vote-min" id="input-vote-min">
+      <input type="hidden" name="vote-max" id="input-vote-max">
+      <input type="hidden" name="year-min" id="input-year-min">
+      <input type="hidden" name="year-max" id="input-year-max">
+
+      <section class="hero is-dark is-fullheight">
+        <div class="hero-body" style="padding-top: 5px;">
+          <div class="container has-text-centered ">
+            <div style="margin-top: 1rem;">
+                <a href="/" class="button">Home</a>
+                <button type="button" class="button" onclick="location.reload()">Pick another</button>
+            </div>
+
+            <hr>
+
+            <img src="https://image.tmdb.org/t/p/w200<%= poster_path %>" alt="poster">
+            <div>
+                <div style="display: inline-flex; position: relative">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <div style="color: gold;position: absolute;overflow: hidden;display: flex;width: <%= vote_average * 10 %>%">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="is-size-4"><%= title %></div>
+            <% genres.forEach(genre => { %>
+              <span class="tag is-info"><%= genre.name %></span>
+            <% }) %>
+            <br>
+            <br>
+            <p>
+                <%= overview %>
+            </p>
+            <hr>
+            <div class="title">Videos</div>
+            <% videos.forEach(video => { %>
+              <% if (video.site === "YouTube") { %>
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/<%= video.key %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <% } %>
+            <% }) %>
+
+            
+            
+            
+            
+            
+          </div>
+        </div>
+      </section>
+
+     
+    </form>
+    
+    
