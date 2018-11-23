@@ -16,6 +16,7 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "moviedb": "^0.2.10",
+    "node-fetch": "^2.3.0",
     "random": "^2.0.12"
   }
 }

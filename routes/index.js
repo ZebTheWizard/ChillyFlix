@@ -31,21 +31,21 @@ router.get('/movie/random', function(req, res, next) {
   }
 
   db.get('/discover/movie', query)
-  .then(({data}) => {
+  .then(data => {
     query.page = random.int(1, data.total_pages)
     return db.get('/discover/movie', query)
   })
-  .then(({data}) => {
+  .then(data => {
     var index = random.int(0, data.results.length - 1)
     var temp = data.results[index]
     if (!temp) return res.render('specific')
     return db.get(`/movie/${temp.id}`)
   })
-  .then(({data}) => {
+  .then(data => {
     show = data
     return db.get(`/movie/${show.id}/videos`)
   })
-  .then(({data}) => {
+  .then(data => {
     show.videos = data.results
     if(q.json) return res.json({ req: q, query, data: show})
     else return res.render('movie', show)
@@ -73,21 +73,21 @@ router.get('/tv/random', function(req, res, next) {
   }
 
   db.get('/discover/tv', query)
-  .then(({data}) => {
+  .then(data => {
     query.page = random.int(1, data.total_pages)
     return db.get('/discover/tv', query)
   })
-  .then(({data}) => {
+  .then(data => {
     var index = random.int(0, data.results.length - 1)
     var temp = data.results[index]
     if (!temp) return res.render('specific')
     return db.get(`/tv/${temp.id}`)
   })
-  .then(({data}) => {
+  .then(data => {
     show = data
     return db.get(`/tv/${show.id}/videos`)
   })
-  .then(({data}) => {
+  .then(data => {
     show.videos = data.results
     if(q.json) return res.json({ req: q, query, data: show})
     else return res.render('tv', show)
