@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 
 app.locals = {
   title: 'Chilly Flix',
+  color: '',
   genres: {
     28:"Action",
     12:"Adventure",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= color ? 'has-background-' + color : '' %>">
   <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
@@ -42,6 +42,9 @@
       max-width: 250px;
       height: auto;
       margin: 0 4px;
+    }
+    .is-borderless {
+      border: none !important;
     }
     </style>
 

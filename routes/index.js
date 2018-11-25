@@ -4,15 +4,15 @@ const random = require('random')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {color: 'link'});
 });
 
 router.get('/movie', function(req, res, next) {
-  res.render('movie-query');
+  res.render('movie-query', {color: 'success'});
 });
 
 router.get('/tv', function(req, res, next) {
-  res.render('tv-query');
+  res.render('tv-query', {color: 'warning'});
 });
 
 router.get('/movie/random', function(req, res, next) {
@@ -38,7 +38,7 @@ router.get('/movie/random', function(req, res, next) {
   .then(data => {
     var index = random.int(0, data.results.length - 1)
     var temp = data.results[index]
-    if (!temp) return res.render('specific')
+    if (!temp) return res.render('specific', {color: 'danger'})
     return db.get(`/movie/${temp.id}`)
   })
   .then(data => {
@@ -48,11 +48,14 @@ router.get('/movie/random', function(req, res, next) {
   .then(data => {
     show.videos = data.results
     if(q.json) return res.json({ req: q, query, data: show})
-    else return res.render('movie', show)
+    else return res.render('movie', {
+      movie: show,
+      color: 'dark'
+    })
   })
   .catch(err => {
     console.error(err.response.data)
-    return res.render('specific')
+    return res.render('specific', {color: 'danger'})
   })
   
 })
@@ -80,7 +83,7 @@ router.get('/tv/random', function(req, res, next) {
   .then(data => {
     var index = random.int(0, data.results.length - 1)
     var temp = data.results[index]
-    if (!temp) return res.render('specific')
+    if (!temp) return res.render('specific', {color: 'danger'})
     return db.get(`/tv/${temp.id}`)
   })
   .then(data => {
@@ -90,11 +93,14 @@ router.get('/tv/random', function(req, res, next) {
   .then(data => {
     show.videos = data.results
     if(q.json) return res.json({ req: q, query, data: show})
-    else return res.render('tv', show)
+    else return res.render('tv',{
+      show: show,
+      color: 'dark'
+    })
   })
   .catch(err => {
     console.error(err.response.data)
-    return res.render('specific')
+    return res.render('specific', {color: 'danger'})
   })
   
 });
